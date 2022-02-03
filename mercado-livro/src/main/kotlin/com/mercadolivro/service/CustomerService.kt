@@ -1,14 +1,11 @@
 package com.mercadolivro.service
 
-import com.mercadolivro.controller.request.PostCustomerRequest
-import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 
 @Service
-class CustomerService {
+class CustomerService (var customerRepository: CustomerRepository) {
 
     val customers = mutableListOf<CustomerModel>()
 
@@ -18,12 +15,10 @@ class CustomerService {
     }
 
     fun create(customer: CustomerModel) {
-        val id = if (customers.isEmpty()) 1 else { customers.last().id!!.toInt() + 1 }.toString()
-        customer.id = id
-        customers.add(customer)
+        customerRepository.save(customer)
     }
 
-    fun get(id: String): CustomerModel {
+    fun get(id: Int): CustomerModel {
         return customers.first { it.id == id }
     }
 
@@ -34,7 +29,7 @@ class CustomerService {
         }
     }
 
-    fun delete(id: String) {
+    fun delete(id: Int) {
         customers.removeIf { it.id == id }
     }
 }
