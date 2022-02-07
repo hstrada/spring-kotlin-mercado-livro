@@ -25,6 +25,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("mysql:mysql-connector-java")
+	implementation("org.flywaydb:flyway-core:8.4.4")
 }
 
 tasks.withType<KotlinCompile> {
