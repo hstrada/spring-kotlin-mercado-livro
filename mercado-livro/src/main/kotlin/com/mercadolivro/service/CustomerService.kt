@@ -18,7 +18,7 @@ class CustomerService (var customerRepository: CustomerRepository) {
         customerRepository.save(customer)
     }
 
-    fun get(id: Int): CustomerModel {
+    fun getById(id: Int): CustomerModel {
         return customerRepository.findById(id).orElseThrow()
     }
 
