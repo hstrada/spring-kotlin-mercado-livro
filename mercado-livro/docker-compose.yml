@@ -4,7 +4,10 @@ services:
     image: mysql/mysql-server
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'mercadolivro'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
