@@ -1,12 +1,16 @@
-Como executar o docker
+### Como executar o docker
 
 > docker-compose up
 
-Como executar o logs do container
+### Como executar o logs do container
 
 > docker exec -it containerID mysql -uroot -proot
 
-MySQL Script
+### Documentation
+
+> http://localhost:8080/swagger-ui/index.html
+
+### MySQL Script
 
 ```sql
 create database mercadolivro;

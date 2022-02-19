@@ -11,3 +11,5 @@ spring:
     password: root
   jackson:
     default-property-inclusion: non-null
+  main:
+    allow-bean-definition-overriding: true
