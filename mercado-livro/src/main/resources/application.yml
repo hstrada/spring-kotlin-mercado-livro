@@ -13,3 +13,5 @@ spring:
     default-property-inclusion: non-null
   main:
     allow-bean-definition-overriding: true
+  web:
+    locale: en

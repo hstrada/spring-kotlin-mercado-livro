@@ -1,15 +1,24 @@
 package com.mercadolivro.config
 
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties
 import org.springframework.context.MessageSource
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import org.springframework.web.servlet.i18n.SessionLocaleResolver
 import java.util.*
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
+
 
 @Configuration
-class MessageConfig {
+class MessageConfig : WebMvcConfigurer {
 
     @Bean(name = ["messageSource"])
     fun messageSource(): MessageSource {
@@ -22,7 +31,7 @@ class MessageConfig {
     }
 
     @Bean
-    fun getValidator(): LocalValidatorFactoryBean? {
+    override fun getValidator(): LocalValidatorFactoryBean? {
         val bean = LocalValidatorFactoryBean()
         bean.setValidationMessageSource(messageSource())
         return bean
@@ -31,7 +40,19 @@ class MessageConfig {
     @Bean
     fun localeResolver(): SessionLocaleResolver {
         val slr = SessionLocaleResolver()
-        slr.setDefaultLocale(Locale.ENGLISH)
+        slr.setDefaultLocale(Locale("en", "US"))
         return slr
     }
+
+    @Bean
+    fun localeChangeInterceptor(): LocaleChangeInterceptor? {
+        val lci = LocaleChangeInterceptor()
+        lci.paramName = "language"
+        return lci
+    }
+
+    override fun addInterceptors(registry: InterceptorRegistry) {
+        registry.addInterceptor(localeChangeInterceptor()!!)
+    }
+
 }
