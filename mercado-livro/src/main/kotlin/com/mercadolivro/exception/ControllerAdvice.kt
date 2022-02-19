@@ -3,6 +3,7 @@ package com.mercadolivro.exception
 import com.mercadolivro.controller.response.ErrorResponse
 import com.mercadolivro.controller.response.FieldErrorResponse
 import com.mercadolivro.enums.Errors
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver
 import org.springframework.context.MessageSource
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -50,7 +51,7 @@ class ControllerAdvice(
             Errors.ML001.code,
             ex.bindingResult.fieldErrors.map {
                 FieldErrorResponse(
-                    messageSource.getMessage(it.defaultMessage ?: "invalid", null, Locale.getDefault()), it.field
+                    messageSource.getMessage(it.defaultMessage ?: "invalid", null, Locale(request.locale.language, request.locale.country)), it.field
                 )
             }
         )

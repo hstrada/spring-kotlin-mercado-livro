@@ -38,21 +38,9 @@ class MessageConfig : WebMvcConfigurer {
     }
 
     @Bean
-    fun localeResolver(): SessionLocaleResolver {
-        val slr = SessionLocaleResolver()
-        slr.setDefaultLocale(Locale("en", "US"))
+    fun localeResolver(): AcceptHeaderLocaleResolver {
+        val slr = AcceptHeaderLocaleResolver()
+        slr.defaultLocale = Locale("en", "US")
         return slr
     }
-
-    @Bean
-    fun localeChangeInterceptor(): LocaleChangeInterceptor? {
-        val lci = LocaleChangeInterceptor()
-        lci.paramName = "language"
-        return lci
-    }
-
-    override fun addInterceptors(registry: InterceptorRegistry) {
-        registry.addInterceptor(localeChangeInterceptor()!!)
-    }
-
 }
