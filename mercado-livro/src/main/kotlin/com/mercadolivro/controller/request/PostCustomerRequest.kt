@@ -5,7 +5,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
 data class PostCustomerRequest(
-    @field:NotEmpty(message = "{name.notempty}")
+    @field:NotEmpty(message = "{NotEmpty.PostCustomerRequest.name}")
     var name: String,
     @field:Email(message = "Email is mandatory.")
     @EmailAvailable
