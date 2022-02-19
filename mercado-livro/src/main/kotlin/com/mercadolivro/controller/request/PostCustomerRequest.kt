@@ -4,8 +4,8 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
 data class PostCustomerRequest(
-    @field:NotEmpty
+    @field:NotEmpty(message = "Name is mandatory.")
     var name: String,
-    @field:Email
+    @field:Email(message = "Email is mandatory.")
     var email: String
 )
