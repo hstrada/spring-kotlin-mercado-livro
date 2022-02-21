@@ -4,7 +4,7 @@ import com.mercadolivro.enums.CustomerStatus
 import javax.persistence.*
 
 @Entity(name = "customers")
-data class CustomerModel(
+data class Customer(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

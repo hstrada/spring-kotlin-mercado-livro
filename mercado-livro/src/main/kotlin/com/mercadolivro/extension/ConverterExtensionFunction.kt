@@ -8,19 +8,19 @@ import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.controller.response.CustomerResponse
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.model.BookModel
-import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.model.Book
+import com.mercadolivro.model.Customer
 
-fun PostCustomerRequest.toCustomerModel(): CustomerModel {
-    return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO)
+fun PostCustomerRequest.toCustomerModel(): Customer {
+    return Customer(name = this.name, email = this.email, status = CustomerStatus.ATIVO)
 }
 
-fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerModel {
-    return CustomerModel(id = previousValue.id, name = this.name, email = this.email, status = previousValue.status)
+fun PutCustomerRequest.toCustomerModel(previousValue: Customer): Customer {
+    return Customer(id = previousValue.id, name = this.name, email = this.email, status = previousValue.status)
 }
 
-fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {
-    return BookModel(
+fun PostBookRequest.toBookModel(customer: Customer): Book {
+    return Book(
         name = this.name,
         price = this.price,
         status = BookStatus.ATIVO,
@@ -28,8 +28,8 @@ fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {
     )
 }
 
-fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel {
-    return BookModel(
+fun PutBookRequest.toBookModel(previousValue: Book): Book {
+    return Book(
         id = previousValue.id,
         name = this.name ?: previousValue.name,
         price = this.price ?: previousValue.price,
@@ -38,7 +38,7 @@ fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel {
     )
 }
 
-fun CustomerModel.toResponse(): CustomerResponse {
+fun Customer.toResponse(): CustomerResponse {
     return CustomerResponse(
         id = this.id,
         name = this.name,
@@ -47,7 +47,7 @@ fun CustomerModel.toResponse(): CustomerResponse {
     )
 }
 
-fun BookModel.toResponse(): BookResponse {
+fun Book.toResponse(): BookResponse {
     return BookResponse(
         id = this.id,
         name = this.name,

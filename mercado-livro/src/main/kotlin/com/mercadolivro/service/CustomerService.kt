@@ -3,7 +3,7 @@ package com.mercadolivro.service
 import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.enums.Errors
 import com.mercadolivro.exception.NotFoundException
-import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.model.Customer
 import com.mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
 
@@ -13,18 +13,18 @@ class CustomerService(
     val bookService: BookService
 ) {
 
-    fun getAll(name: String?): List<CustomerModel> {
+    fun getAll(name: String?): List<Customer> {
         name?.let {
             return customerRepository.findByNameContaining(name)
         }
         return customerRepository.findAll().toList()
     }
 
-    fun create(customer: CustomerModel) {
+    fun create(customer: Customer) {
         customerRepository.save(customer)
     }
 
-    fun findById(id: Int): CustomerModel {
+    fun findById(id: Int): Customer {
         return customerRepository.findById(id).orElseThrow {
             NotFoundException(
                 Errors.ML201.message.format(id),
@@ -33,7 +33,7 @@ class CustomerService(
         }
     }
 
-    fun update(customer: CustomerModel) {
+    fun update(customer: Customer) {
         if (!customerRepository.existsById(customer.id!!)) {
             throw Exception()
         }

@@ -15,3 +15,6 @@ spring:
     allow-bean-definition-overriding: true
   web:
     locale: en
+  spring:
+    messages:
+      encoding: ISO-8859-1
