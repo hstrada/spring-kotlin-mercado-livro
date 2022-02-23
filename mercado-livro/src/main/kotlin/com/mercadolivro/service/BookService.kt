@@ -27,7 +27,8 @@ class BookService(
     }
 
     fun findById(id: Int): Book {
-        return bookRepository.findById(id).orElseThrow { NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
+        return bookRepository.findById(id)
+            .orElseThrow { NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
     }
 
     fun deleteById(id: Int) {
@@ -46,5 +47,9 @@ class BookService(
             book.status = BookStatus.DELETADO
         }
         bookRepository.saveAll(books)
+    }
+
+    fun findAllByIds(bookIds: Set<Int>): List<Book> {
+        return bookRepository.findAllById(bookIds).toList()
     }
 }
