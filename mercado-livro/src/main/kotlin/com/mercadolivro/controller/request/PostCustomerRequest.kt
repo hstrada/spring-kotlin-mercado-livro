@@ -9,5 +9,7 @@ data class PostCustomerRequest(
     var name: String,
     @field:Email(message = "Email is mandatory.")
     @EmailAvailable
-    var email: String
+    var email: String,
+    @field:NotEmpty(message = "Password is mandatory.")
+    var password: String
 )

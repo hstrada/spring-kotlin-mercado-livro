@@ -1,6 +1,7 @@
+
 ### Como executar o docker
 
-> docker-compose up
+> docker-compose up -d
 
 ### Como executar o logs do container
 
@@ -12,14 +13,4 @@
 
 ### MySQL Script
 
-```sql
-create database mercadolivro;
-
-use mercadolivro;
-
-create table customers (
-    id int auto_increment primary key
-    ,name varchar(255) not null
-    ,email varchar(255) not null unique
-);
-```
+using flyway

@@ -12,11 +12,22 @@ import com.mercadolivro.model.Book
 import com.mercadolivro.model.Customer
 
 fun PostCustomerRequest.toCustomerModel(): Customer {
-    return Customer(name = this.name, email = this.email, status = CustomerStatus.ATIVO)
+    return Customer(
+        name = this.name,
+        email = this.email,
+        status = CustomerStatus.ATIVO,
+        password = this.password
+    )
 }
 
 fun PutCustomerRequest.toCustomerModel(previousValue: Customer): Customer {
-    return Customer(id = previousValue.id, name = this.name, email = this.email, status = previousValue.status)
+    return Customer(
+        id = previousValue.id,
+        name = this.name,
+        email = this.email,
+        status = previousValue.status,
+        password = previousValue.password
+    )
 }
 
 fun PostBookRequest.toBookModel(customer: Customer): Book {

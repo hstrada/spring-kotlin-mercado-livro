@@ -4,8 +4,8 @@ CREATE TABLE purchases (
     ,nfe varchar(255)
     ,price DECIMAL(15,2) not null
     ,created_at DATETIME not null
-    ,FOREIGN KEY (customer_id) references customer(id)
-)
+    ,FOREIGN KEY (customer_id) references customers(id)
+);
 
 create table purchases_books (
     purchase_id int not null
@@ -13,4 +13,4 @@ create table purchases_books (
     ,FOREIGN KEY (purchase_id) references purchases(id)
     ,FOREIGN KEY (book_id) references books(id)
     ,primary key (purchase_id, book_id)
-)
+);
