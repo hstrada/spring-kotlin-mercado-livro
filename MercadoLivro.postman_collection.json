@@ -76,10 +76,16 @@
 					"name": "Customer.Create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "pt-BR",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Helena\",\n    \"email\": \"helena@email.com\"\n}",
+							"raw": "{\n    \"name\": \"\",\n    \"email\": \"helena@email.com.br\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
