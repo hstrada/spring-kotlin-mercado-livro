@@ -14,3 +14,7 @@
 ### MySQL Script
 
 using flyway
+
+### Changing env
+
+> -Dspring.profiles.active=prod
