@@ -12,14 +12,18 @@
 					"name": "Customer.Get",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/customers",
-							"protocol": "http",
+							"raw": "{{base_url}}/customers",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers"
 							]
@@ -189,7 +193,7 @@
 					"response": []
 				},
 				{
-					"name": "Books.Create Copy",
+					"name": "Books.Update",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -271,6 +275,83 @@
 							"path": [
 								"books",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.headers.get(\"Authorization\")\r",
+									"pm.environment.set('token', token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gusstavo@email.com\",\r\n    \"password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin.Report",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiZXhwIjoxNjQ2MjQzNTQ2fQ.kVKz_GjM5OX60lKA9e04OInZ53ywarRShjcknd9Xvo4G7GmNZ3-5l7xMg9HGQ_Uua-mrkpjMw17lY2bAp67jgg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/admin/report",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"report"
 							]
 						}
 					},
