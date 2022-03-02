@@ -25,7 +25,6 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
@@ -33,6 +32,10 @@ dependencies {
 	implementation("org.flywaydb:flyway-core:8.5.0")
 	implementation("org.flywaydb:flyway-mysql:8.4.3")
 	runtimeOnly("mysql:mysql-connector-java")
+
+	// https://mvnrepository.com/artifact/io.mockk/mockk
+	testImplementation("io.mockk:mockk:1.12.3")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
