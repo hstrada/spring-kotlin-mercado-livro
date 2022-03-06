@@ -34,7 +34,7 @@ class AuthenticationFilter(
         chain: FilterChain,
         authResult: Authentication
     ) {
-        val id: Int = (authResult.principal as UserCustomDetails).customer.id!!
+        val id: Int = (authResult.principal as UserCustomDetails).id
         val token = jwtUtil.generateToken(id)
         response.addHeader("Authorization", "Bearer $token")
     }
