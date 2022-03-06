@@ -34,7 +34,7 @@ class CustomerRepositoryTest {
     }
 
     @Nested
-    inner class `exists by email` {
+    inner class `Exists by email` {
         @Test
         fun `should return true when email exists`() {
             val email = "email@teste.com"
@@ -48,6 +48,26 @@ class CustomerRepositoryTest {
             val email = "nonexist@teste.com"
             val exists = customerRepository.existsByEmail(email)
             assertFalse(exists)
+        }
+    }
+
+    @Nested
+    inner class `Find by email` {
+        @Test
+        fun `should return customer when email exists`() {
+            val email = "email@teste.com"
+            val customer = customerRepository.save(buildCustomer(email = email))
+            val result = customerRepository.findByEmail(email)
+
+            assertNotNull(result)
+            assertEquals(customer, result)
+        }
+
+        @Test
+        fun `should return null when email does not exists`() {
+            val email = "nonexist@teste.com"
+            val result = customerRepository.findByEmail(email)
+            assertNull(result)
         }
     }
 }
