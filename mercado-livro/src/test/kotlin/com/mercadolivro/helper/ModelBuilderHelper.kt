@@ -26,7 +26,7 @@ fun buildPurchaseModel(
     id: Int? = null,
     customer: Customer = buildCustomer(),
     books: MutableList<Book> = mutableListOf(),
-    nfe: String = UUID.randomUUID().toString(),
+    nfe: String? = UUID.randomUUID().toString(),
     price: BigDecimal = BigDecimal.TEN
 ) = Purchase(
     id = id,
